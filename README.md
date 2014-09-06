@@ -17,13 +17,24 @@ The default role variables in `defaults/main.yml` are:
     # defaults file for wemux
     wemux:
       install_prefix: /usr/local
-      host_list: localhost
+      host_list: root
 
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+ - [geerlingguy.git][2]
+
+You may need to add this to your `Ansiblefile`:
+
+    #!/usr/bin/env ruby
+    #^syntax detection
+    
+    site "https://galaxy.ansible.com/api/v1"
+    
+    role "geerlingguy.git"
+    #role "geerlingguy.git" github: "geerlingguy/ansible-role-git"
+
 
 Example Playbook
 ----------------
@@ -44,7 +55,7 @@ To change the default `host_list` setting in the `wemux.conf` file, or to change
 
     - hosts: servers
       roles:
-         - { role: trinitronx.wemux, wemux: { install_prefix: /opt/, host_list: [ localhost, foo ] } }
+         - { role: trinitronx.wemux, wemux: { install_prefix: /opt/, host_list: [ root, foo, myuser ] } }
 
 License
 -------
