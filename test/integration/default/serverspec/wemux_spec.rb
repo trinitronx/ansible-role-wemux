@@ -17,5 +17,5 @@ end
 
 describe file('/usr/local/etc/wemux.conf') do
   it { should be_file }
-  its(:content) { should match /^host_list=\(\s*localhost\s*\)/ }
+  its(:content) { should match /^host_list=\(\s*root\s*\)/ }
 end
