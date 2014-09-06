@@ -1,0 +1,37 @@
+---
+- name: debug things
+  debug: >
+    msg="{{ item }}"
+  with_items: 
+   - "{{ wemux }}"
+
+- name: get the weemux repo
+  git: >
+    repo=https://github.com/zolrath/wemux.git
+    dest={{ wemux['install_prefix'] }}/share/wemux
+    force=yes
+
+- name: install wemux
+  file: >
+    src={{ wemux['install_prefix'] }}/share/wemux/wemux
+    dest={{ wemux['install_prefix'] }}/bin/wemux
+    state=link
+
+- name: copy config
+  shell: >
+    cp -vn {{ wemux['install_prefix'] }}/share/wemux/wemux.conf.example {{ wemux['install_prefix'] }}/etc/wemux.conf
+    creates={{ wemux['install_prefix'] }}/etc/wemux.conf
+
+- name: remove host_list
+  lineinfile:
+    dest: "{{ wemux['install_prefix'] }}/etc/wemux.conf"
+    regexp: "^host_list="
+    state: absent
+  when: wemux['host_list'] is defined
+
+- name: add host_list
+  lineinfile:
+    dest: "{{ wemux['install_prefix'] }}/etc/wemux.conf"
+    regexp: "^host_list="
+    line: "host_list=({{ wemux['host_list'] }})"
+  when: wemux['host_list'] is defined
