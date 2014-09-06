@@ -80,7 +80,9 @@ Make sure you have a working Ruby and put
     gem 'kitchen-vagrant'
     gem 'kitchen-ansible', :git => 'git://github.com/trinitronx/kitchen-ansible.git'
 
-in your Gemfile.
+in your Gemfile.  Then run `bundle install`
+
+To run integration tests: `kitchen test`
 
 Install via ChefDK
 ------------------
