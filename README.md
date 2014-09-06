@@ -98,7 +98,10 @@ Try checking out my other [ansible-tdd example repo][6]
 Author Information
 ------------------
 
-(c) 2014 James Cuzella
+Original wemux tasks adapted from [Jon Doveston's ide role][7]
+
+(c) 2014 Jon Doveston @hatoshi
+(c) 2014 James Cuzella @trinitronx
 
 [1]: https://github.com/zolrath/wemux
 [2]: https://github.com/geerlingguy/ansible-role-git
@@ -106,3 +109,4 @@ Author Information
 [4]: https://downloads.getchef.com/chef-dk
 [5]: https://github.com/trinitronx/kitchen-ansible
 [6]: https://github.com/trinitronx/ansible-tdd
+[7]: https://github.com/hatoishi/ansible-dev/blob/master/ide/tasks/wemux.yml
