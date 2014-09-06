@@ -86,8 +86,8 @@ Install via ChefDK
 ------------------
 
  1. Download [ChefDK][4]
- 2. Install `kitchen-ansible` gem from [my fork][5]<br/><br/>`eval $(/opt/chefdk/bin/chef shell-init $(basename $SHELL)); sudo /opt/chefdk/embedded/bin/gem install specific_install; sudo /opt/chefdk/embedded/bin/gem specific_install -l https://github.com/trinitronx/kitchen-ansible -b develop`
- 3. Checkout this role: `git clone https://github.com/trinitronx/ansible-role-wemux.git && cd ansible-role-wemux`
+ 2. Install `kitchen-ansible` gem from [my fork][5] (Only until some outstanding PRs are merged)<br/><br/>`eval $(/opt/chefdk/bin/chef shell-init $(basename $SHELL)); sudo /opt/chefdk/embedded/bin/gem install specific_install; sudo /opt/chefdk/embedded/bin/gem specific_install -l https://github.com/trinitronx/kitchen-ansible -b develop`
+ 3. Checkout this role: `git clone https://github.com/trinitronx/ansible-role-wemux.git && cd ansible-role-wemux`<br/>
  4. Run Test Kitchen: `/opt/chefdk/bin/kitchen test`
 
 Still Need Help?
