@@ -60,7 +60,7 @@ To change the default `host_list` setting in the `wemux.conf` file, or to change
 License
 -------
 
-Apache
+MIT
 
 Testing
 -------
