@@ -5,3 +5,6 @@ site "https://galaxy.ansible.com/api/v1"
 
 role "geerlingguy.git"
 #role "geerlingguy.git" github: "geerlingguy/ansible-role-git"
+
+role "trinitronx.tmux"
+#role "trinitronx.tmux", github: "trinitronx/ansible-role-tmux"
