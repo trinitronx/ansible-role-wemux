@@ -89,4 +89,7 @@ galaxy_info:
 dependencies: 
   - geerlingguy.git
   - trinitronx.tmux
-version: 0.0.1
+# ERROR! 'version' is not a valid attribute for a RoleMetadata
+# This is a current feature proposal in: https://github.com/ansible/proposals/issues/23
+# Original: https://github.com/ansible/ansible/issues/13496
+#version: 0.0.1
