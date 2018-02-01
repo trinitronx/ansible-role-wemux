@@ -1,5 +1,9 @@
-Role Name
-=========
+wemux
+=====
+<noscript><a href="https://liberapay.com/trinitronx/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript>
+[![Build Status](http://img.shields.io/travis/trinitronx/ansible-role-wemux.svg)](https://travis-ci.org/trinitronx/ansible-role-wemux)
+[![Ansible Role Downloads](https://img.shields.io/ansible/role/d/23571.svg)](https://galaxy.ansible.com/trinitronx/wemux/)
+[![Ansible Role](https://img.shields.io/ansible/role/23571.svg)](https://galaxy.ansible.com/trinitronx/wemux/)
 
 Installs and configures [wemux][1] on a host.
 
