@@ -86,6 +86,12 @@ galaxy_info:
   categories:
   - development
   - system
+  galaxy_tags:
+    - development
+    - devops
+    - tmux
+    - wemux
+    - pair-programming
 dependencies: 
   - geerlingguy.git
   - trinitronx.tmux
