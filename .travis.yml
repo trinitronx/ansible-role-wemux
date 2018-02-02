@@ -33,7 +33,7 @@ before_install:
   - gem install kitchen-docker
   - gem list
   - which kitchen
-  - KITCHEN_YAML=.kitchen.docker.yml kitchen diagnose --all
+  - KITCHEN_YAML=.kitchen.docker.local.yml kitchen diagnose --all
 
 script:
 ## avoid locale issue under xenial docker, https://github.com/pypa/pip/issues/3575
