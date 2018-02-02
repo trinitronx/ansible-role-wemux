@@ -28,6 +28,7 @@ before_install:
 ## need to use chef gem for some reason? BAD PATH https://github.com/chef/chef-dk/issues/15
 #  - chef gem install kitchen
   - gem install kitchen
+  - gem install librarian-ansible
   - gem install kitchen-ansible
   - gem install kitchen-sync
   - gem install kitchen-docker
