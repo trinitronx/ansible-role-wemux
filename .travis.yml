@@ -39,7 +39,7 @@ script:
 ## avoid locale issue under xenial docker, https://github.com/pypa/pip/issues/3575
   - export LC_ALL=C.UTF-8
   - export LANG=C.UTF-8
-  - KITCHEN_YAML=.kitchen.docker.yml kitchen verify ${distribution}-${version//./}
+  - KITCHEN_YAML=.kitchen.docker.local.yml kitchen verify ${distribution}-${version//./}
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
