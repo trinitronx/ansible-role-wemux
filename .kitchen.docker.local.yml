@@ -1,91 +1,58 @@
-## If you want to use one of the kitchen-docker* drivers...
-## You should rename this file to: .kitchen.local.yml
-## Hint: Make sure you have kitchen-docker and kitchen-docker-api gems installed
-## Then set DOCKER_HOST=tcp://my-docker-host.example.com:4243
 ---
-## driver name: docker is for portertech/kitchen-docker
 driver:
   name: docker
-## driver_plugin: docker is for adnichols/kitchen-docker-api
-#driver_plugin: docker
-driver_config:
-  hostname: kitchen
-#  use_sudo: true
-  socket: <%= ENV['DOCKER_HOST'] %>
-#  socket: tcp://localhost:4243
-#  require_chef_omnibus: true
-#  hostname: kitchen
+## https://github.com/test-kitchen/kitchen-docker/issues/54
+  use_sudo: false
+
+transport:
+  name: sftp
+
+provisioner:
+  name: ansible_playbook
+  roles_path: ../
+  hosts: test-kitchen
+#  ansible_verbose: true
+  ansible_verbose: false
+  ansible_verbosity: 3
+  ansible_extra_flags: <%= ENV['ANSIBLE_EXTRA_FLAGS'] %>
+#  require_chef_omnibus: false
+  require_ansible_omnibus: true
+#  require_chef_for_busser: false
+  enable_yum_epel: true
+  ansible_connection: ssh
 
 platforms:
-#- name: centos-5.10
-#  driver_config:
-#    image: cpuguy83/centos
-#    platform: centos
-#    provision_command:
+  - name: ubuntu-16.04
+#    driver_config: &UBUNTU_PROVISION
+#      provision_command:
+#      - apt-get -y install apt-utils
+#      - apt-get -y install software-properties-common python-software-properties
+#      - add-apt-repository ppa:rquillo/ansible
 #      - curl -L https://www.opscode.com/chef/install.sh | bash
-#      - yum -y install make gcc which bash tar cronie
-- name: centos-6.4
-  driver_config:
-    image: learndocker/centos
-    platform: centos
-    provision_command: &1
-      - curl -L https://www.opscode.com/chef/install.sh | bash
-      - rpm -ivh https://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
-      - yum makecache
-      - yum -y install ansible libselinux-python
-      - yum -y install make gcc which bash tar cronie
-- name: centos-6.5
-  driver_config:
-    image: learndocker/centos
-    platform: centos
-    provision_command: *1
-#- name: fedora-19
-#  driver_config:
-#    image: alexl/fedora-19
-#    platform: fedora
-#    provision_command: *1
-## Precise Pangolin (LTS)
-- name: ubuntu-12.04
-  driver_config:
-    provision_command: &2
-      - apt-get -y install apt-utils
-      - apt-get -y install software-properties-common python-software-properties
-      # - apt-get install tree && for f in $(echo $PATH | sed -e 's/:/ /g'); do tree $f; done
-      - add-apt-repository ppa:rquillo/ansible
-      - curl -L https://www.opscode.com/chef/install.sh | bash
-      - apt-get update
-      - apt-get -y install ansible python-selinux
-      - apt-get install -y build-essential bash debianutils dnsutils net-tools telnet tar cron
-## Lucid Lynx (LTS) - EOL April 2015
-- name: ubuntu-10.04
-  driver_config:
-    provision_command:
-      - chmod 4755 /usr/bin/sudo
-      - apt-get -y install apt-utils
-      - apt-get -y install python-software-properties
-      # - apt-get install tree && for f in $(echo $PATH | sed -e 's/:/ /g'); do tree $f; done
-      - add-apt-repository ppa:rquillo/ansible
-      - curl -L https://www.opscode.com/chef/install.sh | bash
-      - apt-get update
-      - apt-get -y install ansible python-selinux
-      - apt-get install -y build-essential bash debianutils dnsutils net-tools telnet tar cron
-## Quantal EOL - 05/16/2014
-# - name: ubuntu-12.10
-#   driver_config:
-#     provision_command: *2
-## Raring EOL - 01/27/2014
-#- name: ubuntu-13.04
-#  driver_config:
-#    provision_command: *2
-## Saucy Salamander
-- name: ubuntu-13.10
-  driver_config:
-    provision_command: *2
-## Trusty Tahr LTS
-- name: ubuntu-14.04
-  driver_config:
-    provision_command: *2
-## Utopic Unicorn
-#- name: ubuntu-14.10
-#  driver_config:
-#    provision_command: *2
+#      - apt-get update
+#      - apt-get -y install python-selinux
+#      - curl -L https://raw.githubusercontent.com/neillturner/omnibus-ansible/master/ansible_install.sh | bash
+#      - apt-get install -y build-essential bash debianutils dnsutils net-tools telnet tar cron
+#  - name: ubuntu-14.04  # omnibus-ansible fails to install
+#    driver_config: *UBUNTU_PROVISION
+#  - name: ubuntu-12.04  # omnibus-ansible fails to install
+#    driver_config: *UBUNTU_PROVISION
+  - name: centos-7
+    driver_config: &SYSTEMD_INIT
+      run_command: /usr/sbin/init
+      run_options:
+        - volume: "/sys/fs/cgroup:/sys/fs/cgroup"
+        - "--privileged"
+### epel mirror issue. see readme
+#  - name: centos-6
+### Ansible 2.2+/cryptography: https://github.com/ansible/ansible/issues/276
+#    provisioner:
+#      ansible_version: 2.1.2.0
+## tool chain kitchen and image need customization... nok currently
+#  - name: alpine-3.4
+
+suites:
+  - name: default
+    run_list:
+    attributes:
+
