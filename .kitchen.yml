@@ -8,6 +8,8 @@ provisioner:
 #  roles_path:
   hosts: test-kitchen
   require_ansible_repo: true
+  ansible_version: latest
+
   ansible_verbose: true
   ansible_verbosity: 4
   sudo: true
@@ -16,7 +18,15 @@ provisioner:
 
 platforms:
   #- name: ubuntu-10.04 # lucid # Tested but bento box disappeared
-  - name: ubuntu-12.04 # precise
+  ## omnibus-ansible and other install methods
+  ## no longer work due to pip package dep issue.
+  ## Tracked in neillturner/omnibus-ansible#9
+  - name: ubuntu-12.04 # precise # Tested, but new ansible package cannot install
+    provisioner:
+      require_ansible_omnibus: false
+      require_ansible_repo: false
+      require_pip: true
+      custom_pre_install_command: 'sudo -E apt-get -y install python-setuptools && sudo -E  easy_install -i https://pypi.python.org/simple pip'
   #- name: ubuntu-13.10 # saucy # Tested but bento box disappeared
   - name: ubuntu-14.04 # trusty
   - name: ubuntu-16.04 # xenial
