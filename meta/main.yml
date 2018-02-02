@@ -57,7 +57,6 @@ galaxy_info:
   - name: Ubuntu
     versions:
        # - all
-      # - lucid    # 10.04 ## geerlingguy.git doesn't support 10.04... no git package on 10.04
       - precise  # 12.04
       - saucy    # 13.10
       - trusty   # 14.04
