@@ -28,6 +28,7 @@ Dependencies
 ------------
 
  - [geerlingguy.git][2]
+ - [trinitronx.tmux][8]
 
 You may need to add this to your `Ansiblefile`:
 
@@ -119,3 +120,4 @@ Original wemux tasks adapted from [Jon Doveston's ide role][7]
 [5]: https://github.com/trinitronx/kitchen-ansible
 [6]: https://github.com/trinitronx/ansible-tdd
 [7]: https://github.com/hatoishi/ansible-dev/blob/master/ide/tasks/wemux.yml
+[8]: https://github.com/trinitronx/ansible-role-tmux
