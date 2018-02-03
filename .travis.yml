@@ -23,7 +23,7 @@ before_install:
   - pwd
   - find -ls
 ## use appropriate role path and not github name
-  - "[ -f get-dependencies.sh ] && sh -x get-dependencies.sh"
+  - "[ -f test/integration/helpers/get-dependencies.sh ] && sh -x test/integration/helpers/get-dependencies.sh"
   - sudo pip install ansible
 ## need to use chef gem for some reason? BAD PATH https://github.com/chef/chef-dk/issues/15
 #  - chef gem install kitchen
