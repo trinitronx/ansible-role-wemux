@@ -90,7 +90,7 @@ galaxy_info:
     - devops
     - tmux
     - wemux
-    - pair-programming
+    - pair programming
 dependencies: 
   - geerlingguy.git
   - trinitronx.tmux
