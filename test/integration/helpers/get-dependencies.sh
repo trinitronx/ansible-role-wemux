@@ -6,7 +6,8 @@ umask 022
 if [ $# != 0 ]; then
 testhelpersdir=$1
 else
-testhelpersdir=$(dirname $0)/../../../
+testhelpersdir="$(dirname $0)/../../../.."
+testhelpersdir="$(realpath "$testhelpersdir")"
 fi
 
 #[ ! -d $testhelpersdir/juju4.redhat-epel ] && git clone https://github.com/juju4/ansible-redhat-epel $testhelpersdir/juju4.redhat-epel
