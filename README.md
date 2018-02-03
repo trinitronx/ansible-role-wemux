@@ -82,6 +82,9 @@ Make sure you have a working Ruby and put
 
     gem 'test-kitchen'
     gem 'kitchen-vagrant'
+    gem 'kitchen-sync'
+    gem 'librarian-ansible'
+    gem 'kitchen-docker'
     gem 'kitchen-ansible', :git => 'git://github.com/trinitronx/kitchen-ansible.git'
 
 in your Gemfile.  Then run `bundle install`
@@ -92,9 +95,9 @@ Install via ChefDK
 ------------------
 
  1. Download [ChefDK][4]
- 2. Install `kitchen-ansible` gem from [my fork][5] (Only until some outstanding PRs are merged)<br/><br/>`eval $(/opt/chefdk/bin/chef shell-init $(basename $SHELL)); sudo /opt/chefdk/embedded/bin/gem install specific_install; sudo /opt/chefdk/embedded/bin/gem specific_install -l https://github.com/trinitronx/kitchen-ansible -b develop`
- 3. Checkout this role: `git clone https://github.com/trinitronx/ansible-role-wemux.git && cd ansible-role-wemux`<br/>
- 4. Run Test Kitchen: `/opt/chefdk/bin/kitchen test`
+ 2. Install `kitchen-ansible` gem<br/><br/>`eval $(/opt/chefdk/bin/chef shell-init $(basename $SHELL)); sudo /opt/chefdk/embedded/bin/gem install kitchen-ansible; sudo /opt/chefdk/embedded/bin/gem librarian-ansible kitchen-docker kitchen-sync`
+ 3. Checkout this role: `git clone https://github.com/trinitronx/ansible-role-wemux.git trinitronx.wemux && cd trinitronx.wemux`<br/>
+ 4. Run Test Kitchen: `/opt/chefdk/bin/kitchen test`  (Alternatively, with `kitchen-docker` driver: `KITCHEN_YAML=.kitchen.docker.local.yml kitchen test`)
 
 Still Need Help?
 ----------------
@@ -107,7 +110,7 @@ Author Information
 Original wemux tasks adapted from [Jon Doveston's ide role][7]
 
 (c) 2014 Jon Doveston @hatoshi
-(c) 2014 James Cuzella @trinitronx
+(c) 2014-2018 James Cuzella @trinitronx
 
 [1]: https://github.com/zolrath/wemux
 [2]: https://github.com/geerlingguy/ansible-role-git
